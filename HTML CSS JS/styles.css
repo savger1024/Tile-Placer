@@ -1,3 +1,14 @@
 body {
-    background-color:rgb(255, 196, 125);
+  background-color: rgb(255, 204, 141);
+}
+
+button {
+  background-color: aqua;
+  text-decoration: none;
+  color: black;
+}
+
+#runImg {
+  width: 50vw;
+  left: 10vw;
 }
