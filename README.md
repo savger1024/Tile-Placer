@@ -1,3 +1,3 @@
 Leírás
 
-Az alkalmazás HTML-t, CSS-t, JS-t használ. A HTML megnyitásával egy gombot fogunk látni, sárga háttérrel. Kattintásra megjelenik egy alertbox.
+Ez az oldal egy futóóeseményről ad tájékoztatást. Alapértelmezett < h1 >, < p > tag-eket tartalmaz. Módosított <button> tag-et tartalmaz. A beszúrt kép szélessége az oldal szélességének fele. Külső css és JS hivatkozás.
