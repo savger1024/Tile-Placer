@@ -6,16 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <script src="events.js"></script>
-    <title>Document</title>
+    <title>Run!</title>
   </head>
   <body>
     <h1>Welcome!</h1>
+    <!--Info-->
     <p>We announce our next running event.</p>
-    <p>Time: 2023.11.25. 17:00 (CET)</p>
+    <p>Arrival Time: 2023.11.25. 14:00 (CET)</p>
+    <p>
+        You can register for sprint or marathon,
+        beginning time depends on schedule
+    </p>
     <p>Place: Hősök Square (Heroes' Square), Budapest</p>
     <p>Price: Free! (You can buy T-Shirts for 750 HUF)</p>
-    <img id="runImg" src="man-running-down-side-of-road-unsplash-623e7c.jpg" />
-    <!-- https://picryl.com/media/man-running-down-side-of-road-unsplash-623e7c -->
-    <button onclick="Registration()">I'll be there</button>
+    <!--Image-->
+    <img id="runImg" src="man-running-unsplash.jpg" /> <!-- https://picryl.com/media/man-running-down-side-of-road-unsplash-623e7c -->
+    <!--Bottom buttons-->
+    <button id="sprint" onclick="Registration(id)">Sprint registration</button>
+    <button id="marathon" onclick="Registration(id)">Marathon registration</button>
   </body>
 </html>
