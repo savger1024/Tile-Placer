@@ -2,13 +2,21 @@ body {
   background-color: rgb(255, 204, 141);
 }
 
+.container {
+  background-color: rgb(255, 204, 141);
+}
+
 button {
   background-color: aqua;
   text-decoration: none;
   color: black;
 }
 
-#runImg {
-  width: 50vw;
-  left: 10vw;
+/*#runImg {
+  width: 66.6vw;
+}*/
+
+#id1 {
+  position: relative;
+  top: 10vh;
 }
