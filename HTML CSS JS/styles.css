@@ -1,22 +1,26 @@
 body {
   background-color: rgb(255, 204, 141);
+  /*background-image: linear-gradient(rgba(255, 204, 141), white);*/
 }
 
-.container {
-  background-color: rgb(255, 204, 141);
-}
 
 button {
   background-color: aqua;
   text-decoration: none;
   color: black;
+  width: 80%;
 }
 
-/*#runImg {
-  width: 66.6vw;
-}*/
+#right {
+  text-align: right;
+}
+
+#runImg {
+  width: 100%;
+}
 
 #id1 {
   position: relative;
   top: 10vh;
+  /*background-color: transparent;*/
 }
