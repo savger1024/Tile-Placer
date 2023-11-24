@@ -1,0 +1,65 @@
+
+/*POSITIONING*/
+#header {
+    height: 10vh;
+    width: 100vw;
+}
+#main {
+    display: flex;
+}
+#sideMenu {
+    width: 20vw;
+    height: 100vh;
+}
+#videoContainer {
+    width: 80vw;
+    display: block;
+}
+.video-row {
+    display: flex;
+    width: inherit;
+    /*height: 20vh;*/
+}
+.video-side {
+    width: 5vw;
+}
+.video {
+    width: 15vw;
+    padding-bottom: 12%;;
+}
+.video-gap {
+    width: 3.33vw;
+}
+
+.row-gap {
+    height: 5vh;
+}
+
+/*FOR TESTING*/
+.transparent {
+    background-color: transparent;
+}
+.blue {
+    background-color: lightblue;
+}
+.red {
+    background-color: lightsalmon;
+}
+.green1 {
+    background-color: greenyellow;
+}
+.green2 {
+    background-color: lightseagreen;
+}
+.light-mode {
+    background-color: bisque;
+}
+.darkMode {
+    background-color: darkgray;
+}
+#lightMode {
+    background-color: bisque;
+}
+#darkMode {
+    background-color: darkgray;
+}
