@@ -1,0 +1,35 @@
+/*POSITIONING*/
+.description-container {
+    width: 52vw;
+    display: block;
+}
+.title-description {
+    height: 50%;
+}
+
+.video-gap {
+    width: 3vw;
+}
+
+/*FOR TESTING*/
+
+.purple1 {
+    background-color: pink;
+}
+
+.purple2 {
+    background-color: purple;
+}
+
+.text-white {
+    color: white;
+    font-weight: bold;
+}
+.text-black {
+    color: black;
+    font-weight: bold;
+}
+
+.text-title {
+    font-size: 23px;
+}
