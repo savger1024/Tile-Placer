@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script src="event.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="header">
+        <div>Row number: <span id="rowNumber">1</span></div>
+        <div>Column number: <span id="columnNumber">2</span></div>
+        <button id="red" onclick="newTile(id)">red</button>
+        <button id="green" onclick="newTile(id)">green</button>
+        <button id="blue" onclick="newTile(id)">blue</button>
+        <button id="black" onclick="newTile(id)">black</button>
+        <button id="white" onclick="newTile(id)">"White"</button>
+    </div>
+    <div id="tileContainer">
+        <div id="row1" class="tile-row">
+            <div id="row1col1" class="tile" onclick="colorChange(this)"></div>
+        </div>
+    </div>
+</body>
+</html>

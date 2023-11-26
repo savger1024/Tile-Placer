@@ -1,0 +1,21 @@
+/*POSITIONING*/
+#header {
+    height: 10vh;
+    width: 100vw;
+    background-color: chartreuse;
+}
+#tileContainer {
+    width: 100vw;
+    display: block;
+}
+.tile-row {
+    display: flex;
+    width: inherit;
+}
+
+.tile {
+    width: 15vw;
+    height: 20vh;
+    background-color: black;
+    z-index: 10;
+}
