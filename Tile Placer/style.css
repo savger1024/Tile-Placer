@@ -15,7 +15,7 @@
 
 .tile {
     width: 15vw;
-    height: 20vh;
+    padding-bottom: 15%;
     background-color: black;
     z-index: 10;
 }
