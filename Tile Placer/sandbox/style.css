@@ -1,0 +1,28 @@
+/*POSITIONING*/
+button {
+    height: 3vw;;
+}
+#header {
+    height: 10vh;
+    width: 100vw;
+    background-color: chartreuse;
+    display: flex;
+}
+.header-text {
+    padding-right: 3vw;
+}
+#tileContainer {
+    width: 100vw;
+    display: block;
+}
+.tile-row {
+    display: flex;
+    width: inherit;
+}
+
+.tile {
+    width: 15vw;
+    padding-bottom: 15%;
+    background-color: black;
+    z-index: 10;
+}
