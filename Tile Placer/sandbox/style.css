@@ -20,6 +20,15 @@ button {
     width: inherit;
 }
 
+
+.active-tile {
+  width: 30vw;
+  background-image: url('ChessTepoztlan_White_Pawn_svg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .tile {
     width: 15vw;
     padding-bottom: 15%;
