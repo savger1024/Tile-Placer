@@ -13,27 +13,32 @@ function newTile(ids) {
         //new tile properties
         
         divTag.id ="row"+row+"col"+newCol;
-        divTag.className = "tile active-tile";
+        divTag.className = "tile active-tile light-tile";
         divTag.onclick = function() {
-        colorChange(this);
-    };
-        if(ids === "red") divTag.style.backgroundColor = "rgb(255, 0, 0)";
-        else if(ids === "green") divTag.style.backgroundColor = "rgb(0, 128, 0)";
-        else if(ids === "blue") divTag.style.backgroundColor = "rgb(0, 0, 255)";
-        else if(ids === "black") divTag.style.backgroundColor = "rgb(0, 0, 0)";
-        else if(ids === "white") divTag.style.backgroundColor = "rgb(255, 228, 196)";           
+            colorChange(this);
+        };
+        if(ids === "red") divTag.style.backgroundColor = "rgb(255, 0, 0)"; //
+        else if(ids === "green") divTag.style.backgroundColor = "rgb(0, 128, 0)"; //
+        else if(ids === "blue") divTag.style.backgroundColor = "rgb(0, 0, 255)"; //
+        else if(ids === "black") divTag.style.backgroundColor = "rgb(0, 0, 0)"; //
+        else if(ids === "white") divTag.style.backgroundColor = "rgb(255, 228, 196)"; //
+        
         colTag.innerHTML = newCol.toString();
     }
-    else if (col < 5) {
+    else if (col < 4) {
         document.getElementById("row"+row).appendChild(divTag);
         newCol = col  + 1;
         //new tile properties
         
         divTag.id ="row"+row+"col"+newCol;
-        divTag.className = "tile";
+        if (col % 2 == 0 && row % 2 == 1) divTag.className = "tile light-tile";
+        else if (col % 2 == 1 && row % 2 == 1) divTag.className = "tile dark-tile";
+        else if (col % 2 == 1 && row % 2 == 0) divTag.className = "tile light-tile";
+        else divTag.className = "tile dark-tile";
+        
         divTag.onclick = function() {
-        colorChange(this);
-    };
+            colorChange(this);
+        }
         if(ids === "red") divTag.style.backgroundColor = "rgb(255, 0, 0)";
         else if(ids === "green") divTag.style.backgroundColor = "rgb(0, 128, 0)";
         else if(ids === "blue") divTag.style.backgroundColor = "rgb(0, 0, 255)";
@@ -49,7 +54,9 @@ function newTile(ids) {
         document.getElementById("tileContainer").appendChild(tileRow);
         //new tile properties
         divTag.id ="row"+newRow+"col1";
-        divTag.className = "tile";
+        if (row % 2 == 1) divTag.className = "tile dark-tile";
+        else divTag.className = "tile light-tile";
+        
         divTag.onclick = function() {
         colorChange(this);
         };
@@ -134,15 +141,16 @@ function colorChange(tile) {
 
 
     //bástya mozgás
-    /*if (activeCol==clickedCol || activeRow==clickedRow) {
-        tile.classList.toggle("active-tile");
-        firstElement.classList.toggle("active-tile");
-    }*/
-    //futó mozgás
-    if (((activeCol-clickedCol)/(activeRow-clickedRow)==1) || ((activeCol-clickedCol)/(activeRow-clickedRow)==-1)) {
+    if (activeCol==clickedCol || activeRow==clickedRow) {
         tile.classList.toggle("active-tile");
         firstElement.classList.toggle("active-tile");
     }
+    //futó mozgás
+    //Math.abs(activeCol-clickedCol) < 2 | Math.abs(activeCol-clickedCol) % 5 < 2
+    /*if (((activeCol-clickedCol)/(activeRow-clickedRow)==1) || ((activeCol-clickedCol)/(activeRow-clickedRow)==-1)) {
+        tile.classList.toggle("active-tile");
+        firstElement.classList.toggle("active-tile");
+    }*/
 
 
 }

@@ -21,17 +21,27 @@ button {
 }
 
 
+
+.tile {
+    width: 10vw;
+    padding-bottom: 10%;
+    background-color: black;
+    z-index: 10;
+    border: 3px solid black;
+    box-sizing: border-box;
+}
+.dark-tile {
+    background-image: linear-gradient(rgba(0,0,0,0.20),rgba(0,0,0,0.20));
+}
+
+.light-tile {
+    background-image: linear-gradient(rgba(255,255,255,0.35),rgba(255,255,255,0.35) );
+}
+
 .active-tile {
-  width: 30vw;
+  width: 10vw;
   background-image: url('ChessTepoztlan_White_Pawn_svg.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.tile {
-    width: 15vw;
-    padding-bottom: 15%;
-    background-color: black;
-    z-index: 10;
 }
