@@ -30,6 +30,8 @@ button {
     border: 3px solid black;
     box-sizing: border-box;
 }
+
+
 .dark-tile {
     background-image: linear-gradient(rgba(0,0,0,0.20),rgba(0,0,0,0.20));
 }
