@@ -15,11 +15,6 @@ function newTile(ids) {
             colorChange(this);
             unitMove(this);
         };
-        if(ids === "red") divTag.style.backgroundColor = "rgb(255, 0, 0)"; //
-        else if(ids === "green") divTag.style.backgroundColor = "rgb(0, 128, 0)"; //
-        else if(ids === "blue") divTag.style.backgroundColor = "rgb(0, 0, 255)"; //
-        else if(ids === "black") divTag.style.backgroundColor = "rgb(0, 0, 0)"; //
-        else if(ids === "white") divTag.style.backgroundColor = "rgb(255, 228, 196)"; //
         colTag.innerHTML = newCol.toString();
     }
     else if (col < 4) {
@@ -36,11 +31,6 @@ function newTile(ids) {
             colorChange(this);
             unitMove(this);
         }
-        if(ids === "red") divTag.style.backgroundColor = "rgb(255, 0, 0)";
-        else if(ids === "green") divTag.style.backgroundColor = "rgb(0, 128, 0)";
-        else if(ids === "blue") divTag.style.backgroundColor = "rgb(0, 0, 255)";
-        else if(ids === "black") divTag.style.backgroundColor = "rgb(0, 0, 0)";
-        else if(ids === "white") divTag.style.backgroundColor = "rgb(255, 228, 196)";           
         colTag.innerHTML = newCol.toString();
     }
     else {
@@ -58,15 +48,20 @@ function newTile(ids) {
         colorChange(this);
         unitMove(this);
         };
-        if(ids === "red") divTag.style.backgroundColor = "rgb(255, 0, 0)";
-        else if(ids === "green") divTag.style.backgroundColor = "rgb(0, 128, 0)";
-        else if(ids === "blue") divTag.style.backgroundColor = "rgb(0, 0, 255)";
-        else if(ids === "black") divTag.style.backgroundColor = "rgb(0, 0, 0)";
-        else if(ids === "white") divTag.style.backgroundColor = "rgb(255, 228, 196)";           
         document.getElementById("row"+newRow).appendChild(divTag);
         colTag.innerHTML = "1";
         rowTag.innerHTML = newRow.toString();
     }
+    if (row==1 && col==0) theNewTile = document.getElementById("row1col1");
+    else if (col < 4) theNewTile = document.getElementById("row"+row+"col"+newCol);
+    else  theNewTile =  document.getElementById("row"+newRow+"col1");
+
+    if(ids === "red") theNewTile.classList.add("lava-tile");
+    else if(ids === "green")  theNewTile.classList.add("grass-tile");
+    else if(ids === "blue") theNewTile.classList.add("ocean-tile");
+    else if(ids === "black") theNewTile.classList.add("stone-tile");
+    else if(ids === "white") theNewTile.classList.add("snow-tile");
+    tileRefresh(divTag);
 }
 function unitMove(unit) {
     console.log("Hello from unitMove");
@@ -77,9 +72,14 @@ function unitMove(unit) {
     }
     else  console.log("No elements with the specified class found");
     //Identifying origin coordinates
+    //VARIABLES
     counter = 0;
     activeRowString = "";
     activeColString = "";
+    activeCol = -1;
+    activeRow = null;
+    //CONDITIONS
+    //const
     for (var i = 0; i < activeIdString.length; i++) {
         var currentCharacter = activeIdString[i];
         if (counter == 0 && !isNaN(currentCharacter)) {
@@ -116,8 +116,6 @@ function unitMove(unit) {
             if (!isNaN(currentCharacter)) clickedColString += currentCharacter; else counter += 1;
         }
     }
-    //activeCol = parseInt(activeColString);
-    //activeRow = parseInt(activeRowString);}
     clickedCol = parseInt(clickedColString);
     clickedRow = parseInt(clickedRowString);
 
@@ -136,19 +134,43 @@ function unitMove(unit) {
 }
 
 function tileRefresh(ids) { //correct display of tiles
+    //VARIABLES
     bgImg = "";
     let tileElement = document.getElementById(ids.id);
-    if (tileElement.classList.contains("light-tile"))
-        bgImg += "url('https://i.imgur.com/B3Pj5xc.png')";
-    if (tileElement.classList.contains("dark-tile"))
-        bgImg += "url('https://i.imgur.com/7gkqAFk.png')";    
-    if (tileElement.classList.contains("active-tile"))
-        bgImg += ", url('https://i.imgur.com/ZSf7hoY.png') "; //,
+    //URLs 1 FILTERS
+    const WHITE_FILTER = "url('https://i.imgur.com/B3Pj5xc.png')";
+    const BLACK_FILTER = "url('https://i.imgur.com/7gkqAFk.png')";
+    //URLs 2 UNITS
+    const UNIT = ", url('https://i.imgur.com/ZSf7hoY.png')";
+    //URLs 3 TERRAINS
+    const GRASS = ", url('https://i.imgur.com/9cH7Rth.jpg')";
+    const OCEAN = ", url('https://i.imgur.com/qgu6ALx.jpg')";
+    const SNOW = ", url('https://i.imgur.com/VI9445s.jpg')";
+    const LAVA = ", url('https://i.imgur.com/9QsPXWN.jpg')";
+    const STONE = ", url('https://i.imgur.com/vWs7xAY.jpg')";
+    //CONDITIONS
+    const LIGHT_TILE = tileElement.classList.contains("light-tile");
+    const DARK_TILE = tileElement.classList.contains("dark-tile");
+    const ACTIVE_TILE = tileElement.classList.contains("active-tile");
+    const GRASS_TILE = tileElement.classList.contains("grass-tile");
+    const OCEAN_TILE = tileElement.classList.contains("ocean-tile");
+    const SNOW_TILE = tileElement.classList.contains("snow-tile");
+    const LAVA_TILE = tileElement.classList.contains("lava-tile");
+    const STONE_TILE = tileElement.classList.contains("stone-tile");
+    //OPERATIONS
+    if (LIGHT_TILE) bgImg += WHITE_FILTER;
+    if (DARK_TILE) bgImg += BLACK_FILTER;
+    if (ACTIVE_TILE) bgImg += UNIT;
+    if (GRASS_TILE) bgImg += GRASS;
+    if (OCEAN_TILE) bgImg += OCEAN;
+    if (SNOW_TILE) bgImg += SNOW;
+    if (LAVA_TILE) bgImg += LAVA;
+    if (STONE_TILE) bgImg += STONE;
     if (bgImg == "") bgImg += "none";
     tileElement.style.backgroundImage = bgImg;
 };
 
-function colorChange(tile) {
+function colorChange(tile) { //Ezt akár ki is lehetne venni, de gyakorlásnak/tesztelésnek jó volt
     var currentColor = window.getComputedStyle(tile).backgroundColor;
     /*red*/if (currentColor === "rgb(255, 0, 0)") tile.style.backgroundColor = "green";
     /*green*/else if (currentColor === "rgb(0, 128, 0)") tile.style.backgroundColor = "blue";
