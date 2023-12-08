@@ -1,9 +1,13 @@
 /*POSITIONING*/
+#contents {
+    display: flex;
+}
+
 button {
     height: 3vw;;
 }
 #header {
-    height: 10vh;
+    height: 6vh;
     width: 100vw;
     background-color: chartreuse;
     display: flex;
@@ -12,7 +16,7 @@ button {
     padding-right: 3vw;
 }
 #tileContainer {
-    width: 100vw;
+    width: 50vw;
     display: block;
 }
 .tile-row {
@@ -24,7 +28,7 @@ button {
 
 .tile {
     width: 10vw;
-    padding-bottom: 10%;
+    padding-bottom: 20%;
     background-color: black;
     z-index: 10;
     border: 3px solid black;
@@ -46,4 +50,8 @@ button {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+#infoBar {
+    margin-left: 5%;
 }
