@@ -11,14 +11,18 @@ function inspectTiles() {
     }
 }
 
-function infoRefresh(tile) {
-    infoAr = [];
+function infoRefresh(sorsz, msg) {
+    /*infoAr = [];
     for (let i = 0; i < 4; i++) {
         infoAr[i] = document.getElementById("info"+i);
-    }
-    tileID = tile.id.split("_");
-    infoAr[0].textContent = tileID[0] + ": " + tileID[1];
-    infoAr[1].textContent = tileID[2] + ": " + tileID[3];
+    }*/
+    info = document.getElementById("info"+sorsz);
+    active = document.getElementsByClassName("active-tile");
+    active1 = active[0];
+    let tileID = active1.id.split("_");
+    const row = tileID[0] + " " + tileID[1];
+    const col = tileID[2] + " " + tileID[3];
+    info.textContent = msg + row + ", " + col;
 }
 function newTile(ids) {
     //other parameters
@@ -70,8 +74,9 @@ function newTile(ids) {
         rowTag.innerHTML = newRow.toString();
     }
     divTag.onclick = function() {
+        infoRefresh(0, "From: ");
         unitMove(this);
-        infoRefresh(this);
+        infoRefresh(1, "To: ");
         }
     if (row==1 && col==0) theNewTile = document.getElementById("row_1_col_1");
     else if (col < 5) theNewTile = document.getElementById("row_"+row+"_col_"+newCol);
@@ -86,6 +91,7 @@ function newTile(ids) {
 }
 function unitMove(unit) {
     console.log("Hello from unitMove");
+    
     activeTile = document.getElementsByClassName("active-tile");
     if (activeTile.length > 0) {
     var firstElement = activeTile[0];
@@ -152,6 +158,8 @@ function unitMove(unit) {
         firstElement.classList.toggle("active-tile");
     }*/
     //Math.abs(activeCol-clickedCol) < 2 | Math.abs(activeCol-clickedCol) % 5 < 2
+
+    
 }
 function tileRefresh(ids) { //correct display of tiles
     //VARIABLES
@@ -163,11 +171,11 @@ function tileRefresh(ids) { //correct display of tiles
     //URLs 2 UNITS
     const UNIT = ", url('https://i.imgur.com/ZSf7hoY.png')";
     //URLs 3 TERRAINS
-    const GRASS = ", url('https://i.imgur.com/9cH7Rth.jpg')";
-    const OCEAN = ", url('https://i.imgur.com/qgu6ALx.jpg')";
-    const SNOW = ", url('https://i.imgur.com/VI9445s.jpg')";
+    const GRASS = ", url('https://i.imgur.com/GgJKJlI.jpg')";
+    const OCEAN = ", url('https://i.imgur.com/CKdRuk9.jpg')";
+    const SNOW = ", url('https://i.imgur.com/TIPaq6X.jpg')";
     const LAVA = ", url('https://i.imgur.com/SEzz84Z.jpg')";
-    const STONE = ", url('https://i.imgur.com/vWs7xAY.jpg')";
+    const STONE = ", url('https://i.imgur.com/tkRL7AD.jpg')";
     //CONDITIONS
     const LIGHT_TILE = tileElement.classList.contains("light-tile");
     const DARK_TILE = tileElement.classList.contains("dark-tile");
