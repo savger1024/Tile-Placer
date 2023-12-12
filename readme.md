@@ -1,10 +1,5 @@
-Tile Placer: Különböző színű csempék között lehet választani. A csempékre kattintva a színük is megváltozik.
-getElementById, createElement, appendChild, concatenation
+Tile Placer (sandbox mode működik): 
 
-Sandbox mode: Szabadon lehet csempéket lerakni, kattintásra változik a színe. 5 csempe lehet egy sorban,
-csempék ID elnevezése sor és oszlop szám alapján. InnerHTML frissítése (sor szám, oszlop szám). Új sor esetén
-az oszlop szám 1-re változik.
+A zip letöltésével és a sandbox/index.html megnyitásával megjelenik az alkalmazás.
 
-Standard mode (nincs): Érj el a célig előre definiált pályán. Amilyen színűre lépsz, annyi pontot kapsz (vagy veszítesz).
-
-Random mode (nincs): Minden csempe random szám alapján generálódik ki (1-5). Érj el a célig minél több ponttal.
+Öt féle mezőt lehet lerakni: Kő, láva, fű (síkság), óceán, havas terület. Egy sorban öt mező van, utána új sor kezdődik. Az első mezőn van az egységünk. Az egységünk bástya mozgásban tud másik mezőre lépni. Az oldal jobb oldalán megjelenik a koordináta, ahol volt a lépés előtt az egység, és a koordináta, ahova a lépés után került (ha máshova kattintunk, a lépés nem történik meg, a két koordináta megegyezik). Ez a mezők létrehozásakor megadott id-k alapján vannak meghatározva.
