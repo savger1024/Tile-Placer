@@ -45,12 +45,19 @@ button {
 }
 
 .active-tile {
-  width: 10vw;
-  background-image: url('ChessTepoztlan_White_Pawn_svg.png');
+  width: 10vw; /*4vw nem működik teljesen jól*/
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.king-tile, rook-tile {
+  width: 10vw;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 #infoBar {
     margin-left: 5%;
