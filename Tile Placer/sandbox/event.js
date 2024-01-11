@@ -17,6 +17,16 @@ const STONE = 'url("https://i.imgur.com/tkRL7AD.jpg")';
 const TERRAINS = ["grass", "ocean", "snow", "lava", "stone"];
 const TERRAINS_URL = [GRASS, OCEAN, SNOW, LAVA, STONE];
 
+function activeRefresh(clickedTile) {
+    console.log(clickedTile);
+    active = document.getElementsByClassName("active-tile");
+    if (active.length > 0) active[0].classList.toggle("active-tile");
+    clickedTile.classList.toggle("active-tile");
+    active = document.getElementsByClassName("active-tile");
+    console.log("ACTIVE TILES ARE");
+    console.log(document.getElementsByClassName("active-tile"));
+}
+
 function infoWrite(info, conArr, msgArr) {
     msg = info;
     first = true;
@@ -67,7 +77,8 @@ function rowColRefresh(sorsz, msg) {
     info = document.getElementById("info"+sorsz);
     active = document.getElementsByClassName("active-tile");
     active1 = active[0];
-    let tileID = active1.id.split("_");
+    tileID = active1.id.split("_");
+
     //FUNCTION SCOPE CONSTANTS
     const row = tileID[0] + " " + tileID[1];
     const col = tileID[2] + " " + tileID[3];
@@ -89,7 +100,7 @@ function newTile(ids) {
         newCol = col  + 1;
         //new tile properties
         divTag.id ="row_"+row+"_col_"+newCol;
-        if (row == 1 && newCol == 1)  divTag.className = "tile active-tile king-tile light-tile";
+        if (row == 1 && newCol == 1)  divTag.className = "tile king-tile light-tile";
         else if (col % 2 == 0 && row % 2 == 1) divTag.className = "tile light-tile";
         else if (col % 2 == 1 && row % 2 == 1) divTag.className = "tile dark-tile";
         else if (col % 2 == 1 && row % 2 == 0) divTag.className = "tile light-tile";
@@ -110,13 +121,37 @@ function newTile(ids) {
         colTag.innerHTML = "1";
         rowTag.innerHTML = newRow.toString();
     }
-    divTag.onclick = function() {//events
-    console.log("From: " + this.id + " click"); rowColRefresh(0, "From: ");
-    console.log("From: " + this.id + " click"); unitMove(this);
-    console.log("From: " + this.id + " click"); rowColRefresh(1, "To: ");
-    console.log("From: " + this.id + " click"); unitRefresh(this, 2);
-    console.log("From: " + this.id + " click"); terrainRefresh(this, 3);
+
+    
+
+    divTag.onclick = function() {
+        console.log(document.getElementsByClassName("active-tile").length > 0);
+        if (document.getElementsByClassName("active-tile").length > 0) {
+            console.log("From: " + this.id + " click"); rowColRefresh(0, "From: "); }
+        var textContent = document.getElementById("info0").textContent;
+        var match = textContent.match(/row (\d+), col (\d+)/);
+        console.log("From: " + this.id + " click"); activeRefresh(this);
+        if (match) {
+            var rowNumber = parseInt(match[1], 10);
+            var colNumber = parseInt(match[2], 10);
+            var matchId = "row_" +  rowNumber + "_col_" + colNumber
+            var matchTile = document.getElementById(matchId);
+            unitMove(matchTile, this)
+        }
+        //console.log("From: " + this.id + " click"); unitMove(this);
+        console.log("From: " + this.id + " click"); rowColRefresh(1, "To: ");
+        console.log("From: " + this.id + " click"); unitRefresh(this, 2);
+        console.log("From: " + this.id + " click"); terrainRefresh(this, 3);
+        tileRefresh(this);
+        if (match) {
+            var rowNumber = parseInt(match[1], 10);
+            var colNumber = parseInt(match[2], 10);
+            var matchId = "row_" +  rowNumber + "_col_" + colNumber
+            var matchTile = document.getElementById(matchId);
+            tileRefresh(matchTile)
+        }
     }
+
     //select
     if (row==1 && col==0) theNewTile = document.getElementById("row_1_col_1");
     else if (col < 5) theNewTile = document.getElementById("row_"+row+"_col_"+newCol);
@@ -129,80 +164,54 @@ function newTile(ids) {
     else if(ids === "white") theNewTile.classList.add("snow-tile");
     console.log("From: newTile"); tileRefresh(divTag);
 }
-function unitMove(unit) {
+function unitMove(originTile, activeTile) {
     console.log("To: unitMove");
-    activeTile = document.getElementsByClassName("active-tile");
-    active1 = activeTile[0];
-    var activeIdString = active1.id;
+    var activeIdString = activeTile.id;
+    var originIdString = originTile.id;
+
+
+
+    
+
     //Identifying origin coordinates
     //VARIABLES
     counter = 0;
-    activeRowString = "";
-    activeColString = "";
-    activeCol = -1;
-    activeRow = null;
-    //OPERATIONS
-    for (var i = 0; i < activeIdString.length; i++) {//activeColString; activeRowString
-        var currentCharacter = activeIdString[i];
-        if (counter == 0 && !isNaN(currentCharacter)) {
-            activeRowString += currentCharacter; counter += 1;
-        }
-        else if (counter == 1) {
-            if (!isNaN(currentCharacter)) activeRowString += currentCharacter; else counter += 1;
-        }
-        else if (counter == 2 && !isNaN(currentCharacter)) {
-            activeColString += currentCharacter; counter += 1;
-        }  
-        else if (counter == 3) {
-            if (!isNaN(currentCharacter)) activeColString += currentCharacter; else counter += 1;
-        }
-    }
+    activeArray = activeIdString.split("_");
+    activeRowString = activeArray[1];
+    activeColString = activeArray[3];
+    originArray = originIdString.split("_");
+    console.log(originArray[1]);
+    originRowString = originArray[1];
+    originColString = originArray[3];
     activeCol = parseInt(activeColString);
     activeRow = parseInt(activeRowString);
-    //identifying destination coordinates
-    counter = 0;
-    clickedRowString = "";
-    clickedColString = "";
-    for (var i = 0; i < unit.id.length; i++) {//clickedColString; clickedRowString
-        var currentCharacter = unit.id[i];
-        if (counter == 0 && !isNaN(currentCharacter)) {
-            clickedRowString += currentCharacter; counter += 1;
-        }
-        else if (counter == 1) {
-            if (!isNaN(currentCharacter)) clickedRowString += currentCharacter; else counter += 1;
-        }
-        else if (counter == 2 && !isNaN(currentCharacter)) {
-            clickedColString += currentCharacter; counter += 1;
-        }  
-        else if (counter == 3) {
-            if (!isNaN(currentCharacter)) clickedColString += currentCharacter; else counter += 1;
-        }
-    }
-    clickedCol = parseInt(clickedColString);
-    clickedRow = parseInt(clickedRowString);
+    originRow = parseInt(originArray[1]);
+    originCol = parseInt(originArray[3]);
+
 
     //move validation, execution
-    const moveKING = Math.abs(activeCol-clickedCol) < 2 && Math.abs(activeRow-clickedRow) < 2;
-    const moveROOK = activeCol==clickedCol || activeRow==clickedRow
-    arr = active1.style.backgroundImage.split(",");
-    console.log(document.getElementById(activeIdString).style.backgroundImage);
+    console.log(Math.abs(activeCol-originCol));
+    console.log(Math.abs(activeRow-originRow));
+    const moveKING = Math.abs(activeCol-originCol) < 2 && Math.abs(activeRow-originRow) < 2;
+    const moveROOK = activeCol==originCol || activeRow==originRow;
+    arr = originTile.style.backgroundImage.split(",");
+    console.log(document.getElementById(originTile.id).style.backgroundImage);
     const hasKING = arr.some(element => element.trim() === KING.trim());
     const hasROOK = arr.some(element => element.trim() === ROOK.trim());
-    
-    if (hasKING && moveKING) moveOperation(hasKING, moveKING, "king-tile", unit, active1, activeIdString);
-    else if (hasROOK && moveROOK) moveOperation(hasROOK, moveROOK, "rook-tile", unit, active1, activeIdString);
+    console.log(hasKING && moveKING);
+    if (hasKING && moveKING) moveOperation(hasKING, moveKING, "king-tile", originTile, activeTile, activeIdString);
+    else if (hasROOK && moveROOK) moveOperation(hasROOK, moveROOK, "rook-tile", originTile, activeTile, activeIdString);
 }
 
 function moveOperation(cond1, cond2, unitTile, unit, active1, activeIdString) {
     if (cond1 && cond2) {
-        unit.classList.toggle("active-tile");
-        active1.classList.toggle("active-tile");
         unit.classList.toggle(unitTile);
         active1.classList.toggle(unitTile);
         console.log("From: unitMove");
         tileRefresh(unit);
         tileRefresh(document.getElementById(activeIdString));
         unitRefresh(document.getElementById(activeIdString), 2)
+        console.log(document.getElementsByClassName("active-tile")[0].id);
     }
 }
 
@@ -215,6 +224,8 @@ function tileRefresh(ids) { //correct display of tiles
     const LIGHT_TILE = tileElement.classList.contains("light-tile");
     const DARK_TILE = tileElement.classList.contains("dark-tile");
     const ACTIVE_TILE = tileElement.classList.contains("active-tile");
+    console.log("HAS ACTIVE TILE:");
+
     const KING_TILE = tileElement.classList.contains("king-tile");
     const ROOK_TILE = tileElement.classList.contains("rook-tile");
     const GRASS_TILE = tileElement.classList.contains("grass-tile");
