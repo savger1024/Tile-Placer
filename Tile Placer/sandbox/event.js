@@ -100,11 +100,12 @@ function newTile(ids) {
         newCol = col  + 1;
         //new tile properties
         divTag.id ="row_"+row+"_col_"+newCol;
-        if (row == 1 && newCol == 1)  divTag.className = "tile king-tile light-tile";
+        if (row == 1 && newCol == 1)  divTag.className = "tile rook-tile light-tile";
+        else if (row == 3 && newCol == 3)  divTag.className = "tile king-tile light-tile";
         else if (col % 2 == 0 && row % 2 == 1) divTag.className = "tile light-tile";
         else if (col % 2 == 1 && row % 2 == 1) divTag.className = "tile dark-tile";
         else if (col % 2 == 1 && row % 2 == 0) divTag.className = "tile light-tile";
-        else divTag.className = "tile dark-tile";        
+        else divTag.className = "tile dark-tile";
         colTag.innerHTML = newCol.toString();
     }
     else {//new row
@@ -169,10 +170,6 @@ function unitMove(originTile, activeTile) {
     var activeIdString = activeTile.id;
     var originIdString = originTile.id;
 
-
-
-    
-
     //Identifying origin coordinates
     //VARIABLES
     counter = 0;
@@ -200,7 +197,7 @@ function unitMove(originTile, activeTile) {
     const hasROOK = arr.some(element => element.trim() === ROOK.trim());
     console.log(hasKING && moveKING);
     if (hasKING && moveKING) moveOperation(hasKING, moveKING, "king-tile", originTile, activeTile, activeIdString);
-    else if (hasROOK && moveROOK) moveOperation(hasROOK, moveROOK, "rook-tile", originTile, activeTile, activeIdString);
+    if (hasROOK && moveROOK) moveOperation(hasROOK, moveROOK, "rook-tile", originTile, activeTile, activeIdString);
 }
 
 function moveOperation(cond1, cond2, unitTile, unit, active1, activeIdString) {
@@ -258,5 +255,11 @@ function inspectTiles() {
             // LoadElement(activeRow+1, activeCol-1);   
             // if stb.
         }
+    }
+}
+
+function start() {
+    for (let i = 0; i < 25; i++) {
+        newTile("green");  
     }
 }

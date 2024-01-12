@@ -9,28 +9,48 @@
     <title>Tile Tales Sandbox</title>
 </head>
 <body>
-    <div id="header">
-        <div class="header-text">(Sandbox mode) (Király mozgás) </div>
-        <div class="header-text"><a href="../standard/index.html">Standard mode</a></div>
-        <div class="header-text"><a href="../random/index.html">Random mode</a></div>
-        <div class="header-text">Row number: <span id="rowNumber">1</span>  </div>
-        <div class="header-text">Column number: <span id="columnNumber">0</span>  </div>
-        <button id="black" onclick="console.log('From: Stone click'); newTile(id)">Stone (-2)</button>
-        <button id="red" onclick="console.log('From: Lava click'); newTile(id)">Lava (-1)</button>
-        <button id="green" onclick="console.log('From: Grass click'); newTile(id)">Grass (0)</button>
-        <button id="blue" onclick="console.log('From: Ocean click'); newTile(id)">Ocean (+1)</button>
-        <button id="white" onclick="console.log('From: Snow click'); newTile(id)">Snow (+2)</button>
-    </div>
+
     <div id="contents">
         <div id="tileContainer">
             <div id="row1" class="tile-row">
             </div>
         </div>
         <div id="infoBar">
-            <p id="info0"></p>
-            <p id="info1"></p>
-            <p id="info2"></p>
-            <p id="info3"></p>
+            <div id="header1">
+                <div class="header-text">(Sandbox mode)</div>
+                <div class="header-text"><a href="../standard/index.html">Standard mode</a></div>
+                <div class="header-text"><a href="../random/index.html">Random mode</a></div>
+                <div class="header-text">Row number: <span id="rowNumber">1</span>  </div>
+                <div class="header-text">Column number: <span id="columnNumber">0</span>  </div>
+
+            </div>
+            <div id="header2">
+                <button id="start" onclick="console.log('From: Start click'); start()">Start</button>
+                <button id="black" onclick="console.log('From: Stone click'); newTile(id)">Stone (-2)</button>
+                <button id="red" onclick="console.log('From: Lava click'); newTile(id)">Lava (-1)</button>
+                <button id="green" onclick="console.log('From: Grass click'); newTile(id)">Grass (0)</button>
+                <button id="blue" onclick="console.log('From: Ocean click'); newTile(id)">Ocean (+1)</button>
+                <button id="white" onclick="console.log('From: Snow click'); newTile(id)">Snow (+2)</button>
+            </div>
+            <div id="infoRow">
+                <p id="info0">-</p>
+                <p id="info1">-</p>
+                <p id="info2">-</p>
+                <p id="info3">-</p>
+            </div>
+            <div class="actions">
+                <input id="theInput" type="text" placeholder="Enter text here" style="margin-bottom: 1vh;">
+            </div>
+            <div class="actions">
+                <button id="action0">-</button>
+                <button id="action1">-</button>
+                <button id="action2">-</button>
+            </div>
+            <div class="actions">
+                <button id="action3">-</button>
+                <button id="action4">-</button>
+                <button id="action5">Other...</button>                
+            </div>            
         </div>
     </div>
     
